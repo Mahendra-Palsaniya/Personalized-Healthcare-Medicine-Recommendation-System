@@ -8,6 +8,7 @@
 ![ML](https://img.shields.io/badge/ML-SVC%20|%20RF%20|%20GB-7C3AED?style=for-the-badge)
 
 **An AI-powered healthcare recommendation system that predicts diseases from symptoms and provides personalized medical guidance.**
+Team members: Arunima Shiva, Mahendra Palsaniya, Soumya Jain
 
 </div>
 
