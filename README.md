@@ -1,4 +1,4 @@
-# 🏥 HealthAI — Personalized Healthcare & Medicine Recommendation System
+# 🏥 Personalized Healthcare & Medicine Recommendation System
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 
 ## 📋 Project Overview
 
-HealthAI leverages Machine Learning (ML) and Artificial Intelligence (AI) to:
+Personalized Healthcare & Medicine Recommendation System to:
 1. **Predict diseases** from patient-reported symptoms (132 possible symptoms → 41 disease classes)
 2. **Recommend medications**, precautions, diet plans, and workout regimens
 3. **Suggest similar medicines** using content-based filtering (TF-IDF + Cosine Similarity)
@@ -23,7 +23,7 @@ HealthAI leverages Machine Learning (ML) and Artificial Intelligence (AI) to:
 ## 🗂️ Project Structure
 
 ```
-HealthAI/
+Personalized Healthcare & Medicine Recommendation System /
 │
 ├── notebooks/
 │   └── Personalized_Healthcare_Recommendation_System.ipynb  ← Main ML notebook
@@ -62,7 +62,6 @@ HealthAI/
 
 ### Step 1: Install Dependencies
 ```bash
-cd HealthAI
 pip install -r requirements.txt
 ```
 
@@ -172,12 +171,6 @@ Patient Symptoms Input
          ↓
   Content-Based Medicine Recommendation
   (TF-IDF + Cosine Similarity on Drug DB)
-```
-
-## ⚕️ Disclaimer
-
-HealthAI is an educational ML project. Predictions and recommendations are for informational purposes only. **Always consult a licensed healthcare professional for medical advice, diagnosis, and treatment.**
-
 ---
 
-*Built with ❤️ using Python, Flask, scikit-learn, pandas, and modern web technologies.*
+*Built with using Python, Flask, scikit-learn, pandas, and modern web technologies.*
