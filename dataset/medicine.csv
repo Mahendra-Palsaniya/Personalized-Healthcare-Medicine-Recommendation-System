@@ -1,0 +1,206 @@
+Drug_Name,Reason,Description
+Antifungal Cream,Fungal infection,Used to treat Fungal infection
+Fluconazole,Fungal infection,Used to treat Fungal infection
+Terbinafine,Fungal infection,Used to treat Fungal infection
+Clotrimazole,Fungal infection,Used to treat Fungal infection
+Ketoconazole,Fungal infection,Used to treat Fungal infection
+Antihistamines,Allergy,Used to treat Allergy
+Decongestants,Allergy,Used to treat Allergy
+Epinephrine,Allergy,Used to treat Allergy
+Corticosteroids,Allergy,Used to treat Allergy
+Immunotherapy,Allergy,Used to treat Allergy
+Proton Pump Inhibitors (PPIs),GERD,Used to treat GERD
+H2 Blockers,GERD,Used to treat GERD
+Antacids,GERD,Used to treat GERD
+Prokinetics,GERD,Used to treat GERD
+Antibiotics,GERD,Used to treat GERD
+Ursodeoxycholic acid,Chronic cholestasis,Used to treat Chronic cholestasis
+Cholestyramine,Chronic cholestasis,Used to treat Chronic cholestasis
+Methotrexate,Chronic cholestasis,Used to treat Chronic cholestasis
+Corticosteroids,Chronic cholestasis,Used to treat Chronic cholestasis
+Liver transplant,Chronic cholestasis,Used to treat Chronic cholestasis
+Antihistamines,Drug Reaction,Used to treat Drug Reaction
+Epinephrine,Drug Reaction,Used to treat Drug Reaction
+Corticosteroids,Drug Reaction,Used to treat Drug Reaction
+Antibiotics,Drug Reaction,Used to treat Drug Reaction
+Antifungal Cream,Drug Reaction,Used to treat Drug Reaction
+Antibiotics,Peptic ulcer disease,Used to treat Peptic ulcer disease
+Proton Pump Inhibitors (PPIs),Peptic ulcer disease,Used to treat Peptic ulcer disease
+H2 Blockers,Peptic ulcer disease,Used to treat Peptic ulcer disease
+Antacids,Peptic ulcer disease,Used to treat Peptic ulcer disease
+Cytoprotective agents,Peptic ulcer disease,Used to treat Peptic ulcer disease
+Antiretroviral drugs,AIDS,Used to treat AIDS
+Protease inhibitors,AIDS,Used to treat AIDS
+Integrase inhibitors,AIDS,Used to treat AIDS
+Entry inhibitors,AIDS,Used to treat AIDS
+Fusion inhibitors,AIDS,Used to treat AIDS
+Insulin,Diabetes,Used to treat Diabetes
+Metformin,Diabetes,Used to treat Diabetes
+Sulfonylureas,Diabetes,Used to treat Diabetes
+DPP-4 inhibitors,Diabetes,Used to treat Diabetes
+GLP-1 receptor agonists,Diabetes,Used to treat Diabetes
+Antibiotics,Gastroenteritis,Used to treat Gastroenteritis
+Antiemetic drugs,Gastroenteritis,Used to treat Gastroenteritis
+Antidiarrheal drugs,Gastroenteritis,Used to treat Gastroenteritis
+IV fluids,Gastroenteritis,Used to treat Gastroenteritis
+Probiotics,Gastroenteritis,Used to treat Gastroenteritis
+Bronchodilators,Bronchial Asthma,Used to treat Bronchial Asthma
+Inhaled corticosteroids,Bronchial Asthma,Used to treat Bronchial Asthma
+Leukotriene modifiers,Bronchial Asthma,Used to treat Bronchial Asthma
+Mast cell stabilizers,Bronchial Asthma,Used to treat Bronchial Asthma
+Anticholinergics,Bronchial Asthma,Used to treat Bronchial Asthma
+Antihypertensive medications,Hypertension,Used to treat Hypertension
+Diuretics,Hypertension,Used to treat Hypertension
+Beta-blockers,Hypertension,Used to treat Hypertension
+ACE inhibitors,Hypertension,Used to treat Hypertension
+Calcium channel blockers,Hypertension,Used to treat Hypertension
+Analgesics,Migraine,Used to treat Migraine
+Triptans,Migraine,Used to treat Migraine
+Ergotamine derivatives,Migraine,Used to treat Migraine
+Preventive medications,Migraine,Used to treat Migraine
+Biofeedback,Migraine,Used to treat Migraine
+Pain relievers,Cervical spondylosis,Used to treat Cervical spondylosis
+Muscle relaxants,Cervical spondylosis,Used to treat Cervical spondylosis
+Physical therapy,Cervical spondylosis,Used to treat Cervical spondylosis
+Neck braces,Cervical spondylosis,Used to treat Cervical spondylosis
+Corticosteroids,Cervical spondylosis,Used to treat Cervical spondylosis
+Blood thinners,Paralysis (brain hemorrhage),Used to treat Paralysis (brain hemorrhage)
+Clot-dissolving medications,Paralysis (brain hemorrhage),Used to treat Paralysis (brain hemorrhage)
+Anticonvulsants,Paralysis (brain hemorrhage),Used to treat Paralysis (brain hemorrhage)
+Physical therapy,Paralysis (brain hemorrhage),Used to treat Paralysis (brain hemorrhage)
+Occupational therapy,Paralysis (brain hemorrhage),Used to treat Paralysis (brain hemorrhage)
+IV fluids,Jaundice,Used to treat Jaundice
+Blood transfusions,Jaundice,Used to treat Jaundice
+Liver transplant,Jaundice,Used to treat Jaundice
+Medications for itching,Jaundice,Used to treat Jaundice
+Antiviral medications,Jaundice,Used to treat Jaundice
+Antimalarial drugs,Malaria,Used to treat Malaria
+Antipyretics,Malaria,Used to treat Malaria
+Antiemetic drugs,Malaria,Used to treat Malaria
+IV fluids,Malaria,Used to treat Malaria
+Blood transfusions,Malaria,Used to treat Malaria
+Antiviral drugs,Chicken pox,Used to treat Chicken pox
+Pain relievers,Chicken pox,Used to treat Chicken pox
+IV fluids,Chicken pox,Used to treat Chicken pox
+Blood transfusions,Chicken pox,Used to treat Chicken pox
+Platelet transfusions,Chicken pox,Used to treat Chicken pox
+Antibiotics,Dengue,Used to treat Dengue
+Antipyretics,Dengue,Used to treat Dengue
+Analgesics,Dengue,Used to treat Dengue
+IV fluids,Dengue,Used to treat Dengue
+Corticosteroids,Dengue,Used to treat Dengue
+Vaccination,Typhoid,Used to treat Typhoid
+Antiviral drugs,Typhoid,Used to treat Typhoid
+IV fluids,Typhoid,Used to treat Typhoid
+Blood transfusions,Typhoid,Used to treat Typhoid
+Liver transplant,Typhoid,Used to treat Typhoid
+Vaccination,hepatitis A,Used to treat hepatitis A
+Antiviral drugs,hepatitis A,Used to treat hepatitis A
+IV fluids,hepatitis A,Used to treat hepatitis A
+Blood transfusions,hepatitis A,Used to treat hepatitis A
+Liver transplant,hepatitis A,Used to treat hepatitis A
+Antiviral drugs,Hepatitis B,Used to treat Hepatitis B
+IV fluids,Hepatitis B,Used to treat Hepatitis B
+Blood transfusions,Hepatitis B,Used to treat Hepatitis B
+Platelet transfusions,Hepatitis B,Used to treat Hepatitis B
+Liver transplant,Hepatitis B,Used to treat Hepatitis B
+Antiviral drugs,Hepatitis C,Used to treat Hepatitis C
+IV fluids,Hepatitis C,Used to treat Hepatitis C
+Blood transfusions,Hepatitis C,Used to treat Hepatitis C
+Platelet transfusions,Hepatitis C,Used to treat Hepatitis C
+Liver transplant,Hepatitis C,Used to treat Hepatitis C
+Antiviral drugs,Hepatitis D,Used to treat Hepatitis D
+IV fluids,Hepatitis D,Used to treat Hepatitis D
+Blood transfusions,Hepatitis D,Used to treat Hepatitis D
+Platelet transfusions,Hepatitis D,Used to treat Hepatitis D
+Liver transplant,Hepatitis D,Used to treat Hepatitis D
+Alcohol cessation,Hepatitis E,Used to treat Hepatitis E
+Corticosteroids,Hepatitis E,Used to treat Hepatitis E
+IV fluids,Hepatitis E,Used to treat Hepatitis E
+Liver transplant,Hepatitis E,Used to treat Hepatitis E
+Nutritional support,Hepatitis E,Used to treat Hepatitis E
+Antibiotics,Alcoholic hepatitis,Used to treat Alcoholic hepatitis
+Isoniazid,Alcoholic hepatitis,Used to treat Alcoholic hepatitis
+Rifampin,Alcoholic hepatitis,Used to treat Alcoholic hepatitis
+Ethambutol,Alcoholic hepatitis,Used to treat Alcoholic hepatitis
+Pyrazinamide,Alcoholic hepatitis,Used to treat Alcoholic hepatitis
+Antipyretics,Tuberculosis,Used to treat Tuberculosis
+Decongestants,Tuberculosis,Used to treat Tuberculosis
+Cough suppressants,Tuberculosis,Used to treat Tuberculosis
+Antihistamines,Tuberculosis,Used to treat Tuberculosis
+Pain relievers,Tuberculosis,Used to treat Tuberculosis
+Antibiotics,Common Cold,Used to treat Common Cold
+Antiviral drugs,Common Cold,Used to treat Common Cold
+Antifungal drugs,Common Cold,Used to treat Common Cold
+IV fluids,Common Cold,Used to treat Common Cold
+Oxygen therapy,Common Cold,Used to treat Common Cold
+Laxatives,Pneumonia,Used to treat Pneumonia
+Pain relievers,Pneumonia,Used to treat Pneumonia
+Warm baths,Pneumonia,Used to treat Pneumonia
+Cold compresses,Pneumonia,Used to treat Pneumonia
+High-fiber diet,Pneumonia,Used to treat Pneumonia
+Nitroglycerin,Dimorphic hemmorhoids(piles),Used to treat Dimorphic hemmorhoids(piles)
+Aspirin,Dimorphic hemmorhoids(piles),Used to treat Dimorphic hemmorhoids(piles)
+Beta-blockers,Dimorphic hemmorhoids(piles),Used to treat Dimorphic hemmorhoids(piles)
+Calcium channel blockers,Dimorphic hemmorhoids(piles),Used to treat Dimorphic hemmorhoids(piles)
+Thrombolytic drugs,Dimorphic hemmorhoids(piles),Used to treat Dimorphic hemmorhoids(piles)
+Compression stockings,Heart attack,Used to treat Heart attack
+Exercise,Heart attack,Used to treat Heart attack
+Elevating the legs,Heart attack,Used to treat Heart attack
+Sclerotherapy,Heart attack,Used to treat Heart attack
+Laser treatments,Heart attack,Used to treat Heart attack
+Levothyroxine,Varicose veins,Used to treat Varicose veins
+Antithyroid medications,Varicose veins,Used to treat Varicose veins
+Beta-blockers,Varicose veins,Used to treat Varicose veins
+Radioactive iodine,Varicose veins,Used to treat Varicose veins
+Thyroid surgery,Varicose veins,Used to treat Varicose veins
+Antithyroid medications,Hypothyroidism,Used to treat Hypothyroidism
+Radioactive iodine,Hypothyroidism,Used to treat Hypothyroidism
+Thyroid surgery,Hypothyroidism,Used to treat Hypothyroidism
+Beta-blockers,Hypothyroidism,Used to treat Hypothyroidism
+Corticosteroids,Hypothyroidism,Used to treat Hypothyroidism
+Glucose tablets,Hyperthyroidism,Used to treat Hyperthyroidism
+Candy or juice,Hyperthyroidism,Used to treat Hyperthyroidism
+Glucagon injection,Hyperthyroidism,Used to treat Hyperthyroidism
+IV dextrose,Hyperthyroidism,Used to treat Hyperthyroidism
+Diazoxide,Hyperthyroidism,Used to treat Hyperthyroidism
+Pain relievers,Hypoglycemia,Used to treat Hypoglycemia
+Exercise,Hypoglycemia,Used to treat Hypoglycemia
+Hot and cold packs,Hypoglycemia,Used to treat Hypoglycemia
+Joint protection,Hypoglycemia,Used to treat Hypoglycemia
+Physical therapy,Hypoglycemia,Used to treat Hypoglycemia
+NSAIDs,Osteoarthristis,Used to treat Osteoarthristis
+Disease-modifying antirheumatic drugs (DMARDs),Osteoarthristis,Used to treat Osteoarthristis
+Biologics,Osteoarthristis,Used to treat Osteoarthristis
+Corticosteroids,Osteoarthristis,Used to treat Osteoarthristis
+Joint replacement surgery,Osteoarthristis,Used to treat Osteoarthristis
+Vestibular rehabilitation,Arthritis,Used to treat Arthritis
+Canalith repositioning,Arthritis,Used to treat Arthritis
+Medications for nausea,Arthritis,Used to treat Arthritis
+Surgery,Arthritis,Used to treat Arthritis
+Home exercises,Arthritis,Used to treat Arthritis
+Topical treatments,(vertigo) Paroymsal Positional Vertigo,Used to treat (vertigo) Paroymsal Positional Vertigo
+Antibiotics,(vertigo) Paroymsal Positional Vertigo,Used to treat (vertigo) Paroymsal Positional Vertigo
+Oral medications,(vertigo) Paroymsal Positional Vertigo,Used to treat (vertigo) Paroymsal Positional Vertigo
+Hormonal treatments,(vertigo) Paroymsal Positional Vertigo,Used to treat (vertigo) Paroymsal Positional Vertigo
+Isotretinoin,(vertigo) Paroymsal Positional Vertigo,Used to treat (vertigo) Paroymsal Positional Vertigo
+Antibiotics,Acne,Used to treat Acne
+Pain relievers,Acne,Used to treat Acne
+Antihistamines,Acne,Used to treat Acne
+Corticosteroids,Acne,Used to treat Acne
+Topical treatments,Acne,Used to treat Acne
+Antibiotics,Urinary tract infection,Used to treat Urinary tract infection
+Urinary analgesics,Urinary tract infection,Used to treat Urinary tract infection
+Phenazopyridine,Urinary tract infection,Used to treat Urinary tract infection
+Antispasmodics,Urinary tract infection,Used to treat Urinary tract infection
+Probiotics,Urinary tract infection,Used to treat Urinary tract infection
+Topical treatments,Psoriasis,Used to treat Psoriasis
+Phototherapy,Psoriasis,Used to treat Psoriasis
+Systemic medications,Psoriasis,Used to treat Psoriasis
+Biologics,Psoriasis,Used to treat Psoriasis
+Coal tar,Psoriasis,Used to treat Psoriasis
+Topical antibiotics,Impetigo,Used to treat Impetigo
+Oral antibiotics,Impetigo,Used to treat Impetigo
+Antiseptics,Impetigo,Used to treat Impetigo
+Ointments,Impetigo,Used to treat Impetigo
+Warm compresses,Impetigo,Used to treat Impetigo
