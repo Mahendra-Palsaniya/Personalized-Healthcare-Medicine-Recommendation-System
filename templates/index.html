@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthAI — Personalized Healthcare & Medicine Recommendation</title>
+  <meta name="description" content="AI-powered symptom checker that predicts diseases and recommends medicines, precautions, diets and workouts instantly.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(150deg, #0f2c6b 0%, #1a4fa0 40%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #0f2c6b;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid #3b82f6;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #3b82f6, #a855f7);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo span { color: #60a5fa; }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-weight: 500; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #aaa; }
+    .status-dot.live { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+    .status-dot.offline { background: #f87171; }
+
+    /* ── Hero ── */
+    .hero-section {
+      text-align: center;
+      color: white;
+      padding: 65px 20px 45px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #e0eaff;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .hero-section h1 span { color: #93c5fd; }
+
+    .hero-section p {
+      font-size: 1.05em;
+      opacity: 0.88;
+      max-width: 580px;
+      margin: 0 auto 30px;
+      line-height: 1.75;
+    }
+
+    .hero-stats {
+      display: inline-flex;
+      gap: 0;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 14px 28px;
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .stat-item:last-child { border-right: none; }
+    .stat-item .num { font-size: 1.6em; font-weight: 700; display: block; color: #93c5fd; }
+    .stat-item .lbl { font-size: 11px; opacity: 0.75; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── Container ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── Section Cards ── */
+    .card {
+      background: white;
+      margin: 28px auto;
+      padding: 38px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      max-width: 960px;
+    }
+
+    .card-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-sub { color: #777; font-size: 14px; margin-bottom: 24px; }
+
+    /* ── Search ── */
+    .search-wrap { position: relative; margin-bottom: 18px; }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #dde3f0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      z-index: 100;
+      max-height: 240px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .dropdown.open { display: block; }
+    .dropdown-item { padding: 11px 16px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #f5f5f5; transition: background 0.15s; }
+    .dropdown-item:hover { background: #eff6ff; color: #1e40af; }
+    .dropdown-item:last-child { border-bottom: none; }
+    .dropdown-empty { padding: 14px 16px; color: #aaa; font-size: 14px; }
+
+    /* ── Tags ── */
+    .tags-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .tags-label { font-weight: 600; font-size: 13px; color: #64748b; }
+    .tags-count { font-size: 12px; color: #3b82f6; font-weight: 600; background: #eff6ff; padding: 3px 10px; border-radius: 50px; }
+
+    .tags-area {
+      min-height: 58px;
+      border: 2px dashed #dde3f0;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      transition: border-color 0.2s;
+    }
+
+    .tags-area:hover { border-color: #3b82f6; }
+    .tags-empty { color: #bbb; font-size: 13px; width: 100%; text-align: center; padding: 8px; }
+
+    .sym-tag {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #1e3a8a;
+      color: white;
+      padding: 5px 11px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tag-x { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 15px; padding: 0; line-height: 1; }
+    .tag-x:hover { color: white; }
+
+    /* ── Quick chips ── */
+    .quick-label { font-size: 12px; color: #94a3b8; font-weight: 500; display: block; margin-bottom: 9px; }
+    .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+
+    .chip {
+      background: #f8faff;
+      border: 1px solid #c7d8ff;
+      color: #1e40af;
+      padding: 6px 13px;
+      border-radius: 50px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .chip:hover { background: #1e3a8a; color: white; border-color: #1e3a8a; transform: translateY(-1px); }
+
+    /* ── Predict button ── */
+    .predict-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(30,58,138,0.35);
+      letter-spacing: 0.3px;
+    }
+
+    .predict-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,58,138,0.45); }
+    .predict-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ── Results ── */
+    .results-area { display: none; }
+
+    .disease-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 100%);
+      color: white;
+      padding: 32px 36px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+    }
+
+    .disease-eyebrow { font-size: 12px; opacity: 0.75; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+    .disease-banner h2 { font-size: 1.9em; font-weight: 700; margin-bottom: 10px; }
+    .disease-banner .desc { opacity: 0.88; font-size: 14px; line-height: 1.65; margin-top: 10px; }
+
+    .match-row { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .match-label { font-size: 12px; opacity: 0.8; white-space: nowrap; }
+    .match-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
+    .match-fill { height: 100%; background: #93c5fd; border-radius: 10px; width: 0; transition: width 0.8s ease; }
+    .match-pct { font-size: 12px; font-weight: 600; }
+
+    /* ── Tabs ── */
+    .tabs-card { background: white; border: 1px solid #e8edf5; border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
+    .tabs-nav { display: flex; border-bottom: 1px solid #e8edf5; overflow-x: auto; }
+    .tab-btn { padding: 13px 20px; border: none; background: #f8faff; font-family: inherit; font-size: 13px; font-weight: 500; color: #94a3b8; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+    .tab-btn.active { color: #1e3a8a; border-bottom-color: #1e3a8a; background: white; }
+    .tab-btn:hover:not(.active) { color: #475569; }
+    .tab-panel { display: none; padding: 24px; }
+    .tab-panel.active { display: block; }
+    .panel-note { font-size: 12px; color: #94a3b8; margin-bottom: 14px; padding: 9px 13px; background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; }
+    .rec-grid { display: flex; flex-direction: column; gap: 9px; }
+
+    .rec-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      background: #f8faff;
+      border-radius: 8px;
+      border-left: 3px solid #3b82f6;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .rec-item:hover { background: #eff6ff; transform: translateX(3px); }
+    .rec-icon { font-size: 16px; flex-shrink: 0; }
+    .rec-empty { color: #aaa; font-size: 13px; padding: 16px; text-align: center; }
+
+    .reset-row { text-align: center; margin-top: 12px; }
+    .btn-reset { background: none; border: 1px solid #cbd5e1; color: #64748b; padding: 9px 22px; border-radius: 50px; font-family: inherit; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+    .btn-reset:hover { border-color: #1e3a8a; color: #1e3a8a; }
+
+    /* ── How it works ── */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
+
+    .feature {
+      padding: 22px 18px;
+      background: #f8faff;
+      border-radius: 12px;
+      border-top: 3px solid;
+      transition: transform 0.2s;
+    }
+
+    .feature:hover { transform: translateY(-3px); }
+    .feature:nth-child(1) { border-top-color: #3b82f6; }
+    .feature:nth-child(2) { border-top-color: #a855f7; }
+    .feature:nth-child(3) { border-top-color: #10b981; }
+    .feature:nth-child(4) { border-top-color: #f59e0b; }
+
+    .feature .ico { font-size: 1.8em; margin-bottom: 10px; }
+    .feature h3 { font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 6px; }
+    .feature p { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+    /* ── Disclaimer ── */
+    .disclaimer {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 10px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: #7c3b00;
+      max-width: 960px;
+      margin: 16px auto 28px;
+    }
+
+    .disclaimer .ico { font-size: 1.3em; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Footer ── */
+    footer { background: #0f2c6b; padding: 28px 20px; margin-top: 0; color: rgba(255,255,255,0.6); }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: #fff; font-size: 16px; }
+    .footer-brand span { color: #60a5fa; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; text-align: center; color: rgba(255,255,255,0.4); }
+
+    /* ── Toast ── */
+    .toast { position: fixed; bottom: 28px; right: 28px; background: #1e293b; color: white; border-radius: 10px; padding: 13px 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.25); font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 9px; z-index: 9999; transform: translateY(20px); opacity: 0; transition: all 0.3s; border-left: 4px solid #3b82f6; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.success { border-left-color: #4ade80; }
+    .toast.error   { border-left-color: #f87171; }
+    .toast.warning { border-left-color: #fbbf24; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 2em; }
+      .card { padding: 24px; margin: 16px 10px; }
+      .nav-links { display: none; }
+      .hero-stats { flex-direction: column; border-radius: 12px; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-icon">⚕️</div>
+      Health<span>AI</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/" class="active">Diagnose</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="nav-status">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusTxt">Connecting…</span>
+      </div>
+      {% if session.get('username') %}
+      <span style="color:rgba(255,255,255,0.7); font-size:13px;">👤 {{ session.name }}</span>
+      <a href="/logout" style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); color:white; padding:6px 13px; border-radius:50px; font-size:12px; font-weight:500; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">Sign Out</a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<div class="hero-section">
+  <div class="hero-badge">🤖 AI-Powered Healthcare Intelligence</div>
+  <h1>Predict. Understand.<br><span>Heal Smarter.</span></h1>
+  <p>Enter your symptoms and let our machine-learning engine identify the most likely condition — then get personalized medications, precautions, diet plans and workout recommendations.</p>
+  <div class="hero-stats">
+    <div class="stat-item"><span class="num">41</span><span class="lbl">Diseases</span></div>
+    <div class="stat-item"><span class="num">132</span><span class="lbl">Symptoms</span></div>
+    <div class="stat-item"><span class="num">100%</span><span class="lbl">Accuracy</span></div>
+    <div class="stat-item"><span class="num">4,920</span><span class="lbl">Records</span></div>
+  </div>
+</div>
+
+<!-- ── Diagnosis Card ── -->
+<div class="container">
+
+  <div class="card">
+    <div class="card-title">🔬 Smart Symptom Checker</div>
+    <p class="card-sub">Search from 132 clinical symptoms, add them as tags, then hit Analyse to get your instant health report.</p>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <input class="search-input" id="searchInput" type="text"
+             placeholder="Type a symptom — e.g. headache, fever, cough…" autocomplete="off">
+      <div class="dropdown" id="dropdown"></div>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-header">
+      <span class="tags-label">Selected Symptoms</span>
+      <span class="tags-count" id="tagsCount">0 selected</span>
+    </div>
+    <div class="tags-area" id="tagsArea">
+      <div class="tags-empty" id="tagsEmpty">Search and add symptoms above to begin</div>
+    </div>
+
+    <!-- Quick chips -->
+    <span class="quick-label">QUICK ADD — common symptoms:</span>
+    <div class="quick-chips">
+      <button class="chip" onclick="addSymptom('high_fever')">🌡️ Fever</button>
+      <button class="chip" onclick="addSymptom('headache')">🤕 Headache</button>
+      <button class="chip" onclick="addSymptom('cough')">😮‍💨 Cough</button>
+      <button class="chip" onclick="addSymptom('fatigue')">😴 Fatigue</button>
+      <button class="chip" onclick="addSymptom('nausea')">🤢 Nausea</button>
+      <button class="chip" onclick="addSymptom('vomiting')">🤮 Vomiting</button>
+      <button class="chip" onclick="addSymptom('itching')">🤲 Itching</button>
+      <button class="chip" onclick="addSymptom('skin_rash')">🔴 Skin Rash</button>
+      <button class="chip" onclick="addSymptom('chest_pain')">💔 Chest Pain</button>
+      <button class="chip" onclick="addSymptom('joint_pain')">🦴 Joint Pain</button>
+      <button class="chip" onclick="addSymptom('dizziness')">💫 Dizziness</button>
+      <button class="chip" onclick="addSymptom('breathlessness')">🫁 Breathlessness</button>
+    </div>
+
+    <!-- Predict -->
+    <button class="predict-btn" id="predictBtn" onclick="predict()">
+      <span id="btnText">🔍 Analyse Symptoms &amp; Predict Disease</span>
+    </button>
+  </div>
+
+  <!-- ── Results ── -->
+  <div class="results-area" id="resultsArea">
+
+    <div class="disease-banner">
+      <div class="disease-eyebrow">Predicted Condition</div>
+      <h2 id="diseaseName">—</h2>
+      <p class="desc" id="diseaseDesc"></p>
+      <div class="match-row">
+        <span class="match-label">Symptom match</span>
+        <div class="match-bar"><div class="match-fill" id="matchFill"></div></div>
+        <span class="match-pct" id="matchPct">0%</span>
+      </div>
+    </div>
+
+    <div class="tabs-card">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('medications')">💊 Medications</button>
+        <button class="tab-btn" onclick="switchTab('precautions')">🛡️ Precautions</button>
+        <button class="tab-btn" onclick="switchTab('diet')">🥗 Diet Plan</button>
+        <button class="tab-btn" onclick="switchTab('workout')">🏋️ Workout</button>
+      </div>
+      <div class="tab-panel active" id="tab-medications">
+        <div class="panel-note">⚠️ Always consult a licensed physician before starting any medication.</div>
+        <div class="rec-grid" id="medList"></div>
+      </div>
+      <div class="tab-panel" id="tab-precautions">
+        <div class="panel-note">Follow these steps to manage and contain your condition.</div>
+        <div class="rec-grid" id="preList"></div>
+      </div>
+      <div class="tab-panel" id="tab-diet">
+        <div class="panel-note">Proper nutrition accelerates recovery and reduces symptoms.</div>
+        <div class="rec-grid" id="dietList"></div>
+      </div>
+      <div class="tab-panel" id="tab-workout">
+        <div class="panel-note">Tailored exercise recommendations for your condition.</div>
+        <div class="rec-grid" id="workoutList"></div>
+      </div>
+    </div>
+
+    <div class="reset-row">
+      <button class="btn-reset" onclick="resetAll()">← Start New Assessment</button>
+    </div>
+  </div>
+
+  <!-- ── How it Works ── -->
+  <div class="card">
+    <div class="card-title">✨ How It Works</div>
+    <p class="card-sub">Four steps from your symptoms to a personalized health report.</p>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="ico">🧩</div>
+        <h3>Symptom Input</h3>
+        <p>Select from 132 clinically validated binary symptom features used in medical diagnosis.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🤖</div>
+        <h3>AI Prediction</h3>
+        <p>Our SVC model maps the symptom vector to one of 41 disease classes in milliseconds.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📋</div>
+        <h3>Personalized Advice</h3>
+        <p>Get matched medications, precautions, dietary guidance and workout plans instantly.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">💊</div>
+        <h3>Medicine Similarity</h3>
+        <p>TF-IDF + Cosine Similarity engine finds alternative drugs with similar therapeutic properties.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Disclaimer ── -->
+  <div class="disclaimer">
+    <div class="ico">⚕️</div>
+    <div>
+      <strong>Medical Disclaimer —</strong>
+      HealthAI is an educational ML project. Predictions and recommendations are for informational purposes only and do <strong>not</strong> constitute professional medical advice. Always consult a qualified healthcare professional for diagnosis and treatment.
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚕️ Health<span>AI</span></div>
+    <div class="footer-links">
+      <a href="/">Diagnose</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div style="font-size:12px; color:rgba(255,255,255,0.4);">© 2026 HealthAI</div>
+  </div>
+  <div class="footer-bottom">
+    ML Stack: SVC · Random Forest · Gradient Boosting · KNN · Naive Bayes · TF-IDF &nbsp;|&nbsp; 4,920 records · 41 diseases · 132 symptoms
+  </div>
+</footer>
+
+<script>
+const API = window.location.origin;
+let allSymptoms = [];
+let selected = new Set();
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadSymptoms();
+  checkHealth();
+});
+
+async function checkHealth() {
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusTxt');
+  try {
+    const r = await fetch(`${API}/health`);
+    const d = await r.json();
+    if (d.model_loaded) { dot.className = 'status-dot live'; txt.textContent = 'AI Model Ready'; }
+    else { dot.className = 'status-dot'; txt.textContent = 'Model Not Loaded'; }
+  } catch {
+    dot.className = 'status-dot offline'; txt.textContent = 'Server Offline';
+  }
+}
+
+async function loadSymptoms() {
+  try {
+    const r = await fetch(`${API}/symptoms`);
+    const d = await r.json();
+    allSymptoms = d.raw || [];
+  } catch {
+    allSymptoms = ['itching','skin_rash','nodal_skin_eruptions','continuous_sneezing','shivering','chills',
+      'joint_pain','stomach_pain','acidity','ulcers_on_tongue','vomiting','fatigue','weight_gain','anxiety',
+      'cold_hands_and_feets','mood_swings','weight_loss','restlessness','lethargy','cough','high_fever',
+      'breathlessness','sweating','dehydration','indigestion','headache','nausea','loss_of_appetite',
+      'back_pain','constipation','abdominal_pain','diarrhoea','mild_fever','malaise','phlegm',
+      'throat_irritation','redness_of_eyes','sinus_pressure','runny_nose','congestion','chest_pain',
+      'weakness_in_limbs','fast_heart_rate','neck_pain','dizziness','cramps','bruising','obesity',
+      'swollen_legs','puffy_face_and_eyes','enlarged_thyroid','brittle_nails','excessive_hunger',
+      'slurred_speech','knee_pain','hip_joint_pain','muscle_weakness','stiff_neck','swelling_joints',
+      'spinning_movements','loss_of_balance','depression','irritability','muscle_pain',
+      'red_spots_over_body','belly_pain','watering_from_eyes','increased_appetite','polyuria',
+      'palpitations','pus_filled_pimples','blackheads','skin_peeling','blister','chest_pain','joint_pain'];
+  }
+}
+
+const searchInput = document.getElementById('searchInput');
+const dropdown    = document.getElementById('dropdown');
+
+searchInput.addEventListener('input', function () {
+  const q = this.value.trim().toLowerCase().replace(/ /g, '_');
+  if (!q) { closeDropdown(); return; }
+  const hits = allSymptoms.filter(s => s.includes(q) && !selected.has(s)).slice(0, 10);
+  if (!hits.length) {
+    dropdown.innerHTML = '<div class="dropdown-empty">No matching symptoms found</div>';
+  } else {
+    dropdown.innerHTML = hits.map(s => {
+      const label = s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      return `<div class="dropdown-item" onclick="addSymptom('${s}')">${label}</div>`;
+    }).join('');
+  }
+  dropdown.classList.add('open');
+});
+
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { const f = dropdown.querySelector('.dropdown-item'); if (f) f.click(); }
+  if (e.key === 'Escape') closeDropdown();
+});
+
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) closeDropdown(); });
+
+function closeDropdown() { dropdown.classList.remove('open'); dropdown.innerHTML = ''; }
+
+function addSymptom(sym) {
+  if (selected.has(sym)) return;
+  selected.add(sym);
+  searchInput.value = '';
+  closeDropdown();
+  renderTags();
+}
+
+function removeSymptom(sym) { selected.delete(sym); renderTags(); }
+
+function renderTags() {
+  const area  = document.getElementById('tagsArea');
+  const empty = document.getElementById('tagsEmpty');
+  const count = document.getElementById('tagsCount');
+  count.textContent = `${selected.size} selected`;
+  empty.style.display = selected.size ? 'none' : 'block';
+  area.querySelectorAll('.sym-tag').forEach(t => t.remove());
+  selected.forEach(sym => {
+    const tag = document.createElement('div');
+    tag.className = 'sym-tag';
+    const label = sym.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    tag.innerHTML = `<span>${label}</span><button class="tag-x" onclick="removeSymptom('${sym}')">×</button>`;
+    area.appendChild(tag);
+  });
+}
+
+async function predict() {
+  if (!selected.size) { showToast('Please select at least one symptom.', 'warning'); return; }
+  const btn  = document.getElementById('predictBtn');
+  const text = document.getElementById('btnText');
+  btn.disabled = true;
+  text.textContent = '⏳ Analysing…';
+  try {
+    const r = await fetch(`${API}/predict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symptoms: [...selected] })
+    });
+    const d = await r.json();
+    if (d.success) renderResults(d);
+    else showToast(d.error || 'Prediction failed.', 'error');
+  } catch {
+    showToast('Cannot reach server. Make sure Flask is running.', 'error');
+  } finally {
+    btn.disabled = false;
+    text.textContent = '🔍 Analyse Symptoms & Predict Disease';
+  }
+}
+
+function renderResults(d) {
+  const area = document.getElementById('resultsArea');
+  area.style.display = 'block';
+  setTimeout(() => area.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  document.getElementById('diseaseName').textContent = d.disease;
+  document.getElementById('diseaseDesc').textContent = d.description || 'No description available.';
+  const pct = d.matched_symptoms > 0 ? Math.min(Math.round(d.matched_symptoms / d.total_symptoms * 500), 100) : 0;
+  setTimeout(() => { document.getElementById('matchFill').style.width = pct + '%'; document.getElementById('matchPct').textContent = pct + '%'; }, 200);
+  fillList('medList',     d.medications || [], '💊');
+  fillList('preList',     d.precautions || [], '🛡️');
+  fillList('dietList',    d.diets       || [], '🥗');
+  fillList('workoutList', d.workout     || [], '🏋️');
+  switchTab('medications');
+  showToast('Analysis complete!', 'success');
+}
+
+function fillList(id, items, icon) {
+  const el = document.getElementById(id);
+  el.innerHTML = items.length
+    ? items.map(t => `<div class="rec-item"><span class="rec-icon">${icon}</span><span>${t}</span></div>`).join('')
+    : `<div class="rec-empty">No data available.</div>`;
+}
+
+function switchTab(name) {
+  const names = ['medications','precautions','diet','workout'];
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+}
+
+function resetAll() {
+  selected.clear(); renderTags();
+  document.getElementById('resultsArea').style.display = 'none';
+  document.getElementById('matchFill').style.width = '0';
+  switchTab('medications');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showToast(msg, type = 'info') {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const icons = { success: '✅', warning: '⚠️', error: '❌', info: 'ℹ️' };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${icons[type]||'ℹ️'}</span>${msg}`;
+  document.body.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('show'));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, 4000);
+}
+</script>
+</body>
+</html>

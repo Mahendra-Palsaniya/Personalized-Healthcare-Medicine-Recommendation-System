@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About HealthAI — ML-Powered Disease Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(150deg, #0f2c6b 0%, #1a4fa0 40%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #0f2c6b;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid #3b82f6;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #3b82f6, #a855f7);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo span { color: #60a5fa; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-weight: 500; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      text-align: center;
+      color: white;
+      padding: 60px 20px 35px;
+    }
+
+    .page-hero h1 { font-size: 2.8em; font-weight: 700; margin-bottom: 12px; line-height: 1.25; }
+    .page-hero h1 span { color: #93c5fd; }
+    .page-hero p { font-size: 1.05em; opacity: 0.88; max-width: 560px; margin: 0 auto; }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      margin: 26px auto;
+      padding: 38px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      max-width: 960px;
+    }
+
+    .card-title { font-size: 1.5em; font-weight: 700; color: #1e3a8a; margin-bottom: 6px; }
+    .card-sub   { color: #777; font-size: 14px; margin-bottom: 22px; }
+    .card p     { color: #555; font-size: 14px; margin-bottom: 12px; }
+
+    /* ── Features Grid ── */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 10px; }
+
+    .feature {
+      padding: 22px 18px;
+      background: #f8faff;
+      border-radius: 12px;
+      border-top: 3px solid;
+      transition: transform 0.2s;
+    }
+
+    .feature:hover { transform: translateY(-3px); }
+    .feature:nth-child(1) { border-top-color: #3b82f6; }
+    .feature:nth-child(2) { border-top-color: #a855f7; }
+    .feature:nth-child(3) { border-top-color: #10b981; }
+    .feature:nth-child(4) { border-top-color: #f59e0b; }
+    .feature:nth-child(5) { border-top-color: #ef4444; }
+    .feature:nth-child(6) { border-top-color: #06b6d4; }
+
+    .feature .ico { font-size: 1.8em; margin-bottom: 10px; }
+    .feature h3   { font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 5px; }
+    .feature p    { font-size: 12px; color: #64748b; margin: 0; }
+
+    /* ── Tech stack ── */
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+    .tech {
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1.5px solid;
+    }
+
+    .tech:nth-child(odd)  { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+    .tech:nth-child(even) { background: #faf5ff; color: #6b21a8; border-color: #e9d5ff; }
+
+    /* ── Model Table ── */
+    .table-wrap { overflow-x: auto; margin-top: 10px; border-radius: 10px; border: 1px solid #e2e8f0; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead { background: linear-gradient(135deg, #1e3a8a, #4f46e5); color: white; }
+    th { padding: 13px 18px; text-align: left; font-weight: 600; font-size: 13px; }
+    td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f8faff; }
+
+    .acc-badge { background: #dcfce7; color: #166534; padding: 3px 11px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+
+    /* ── Dataset stats ── */
+    .ds-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 18px; }
+
+    .ds-card {
+      text-align: center;
+      background: #f8faff;
+      border-radius: 12px;
+      padding: 22px 12px;
+      border-bottom: 4px solid;
+      transition: transform 0.2s;
+    }
+
+    .ds-card:hover { transform: translateY(-2px); }
+    .ds-card:nth-child(1) { border-bottom-color: #3b82f6; }
+    .ds-card:nth-child(2) { border-bottom-color: #a855f7; }
+    .ds-card:nth-child(3) { border-bottom-color: #10b981; }
+    .ds-card:nth-child(4) { border-bottom-color: #f59e0b; }
+
+    .ds-num   { font-size: 2em; font-weight: 700; color: #1e3a8a; }
+    .ds-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+
+    /* ── CTA ── */
+    .cta-section { text-align: center; padding: 35px 20px; }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(30,58,138,0.35);
+    }
+
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(30,58,138,0.45); }
+
+    /* ── Disclaimer ── */
+    .disclaimer {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 10px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: #7c3b00;
+      max-width: 960px;
+      margin: 10px auto 26px;
+    }
+
+    .disclaimer .ico { font-size: 1.3em; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    footer { background: #0f2c6b; padding: 28px 20px; color: rgba(255,255,255,0.5); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: #fff; font-size: 16px; }
+    .footer-brand span { color: #60a5fa; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; text-align: center; color: rgba(255,255,255,0.35); }
+
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 2em; }
+      .card { padding: 24px; margin: 16px 10px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-icon">⚕️</div>
+      Health<span>AI</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/">Diagnose</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    {% if session.get('username') %}
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="color:rgba(255,255,255,0.65); font-size:13px;">👤 {{ session.name }}</span>
+      <a href="/logout" style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); color:white; padding:6px 13px; border-radius:50px; font-size:12px; font-weight:500; text-decoration:none;" onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">Sign Out</a>
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<div class="page-hero">
+  <h1>About <span>HealthAI</span></h1>
+  <p>An ML-powered platform that predicts diseases from symptoms and delivers personalized treatment recommendations.</p>
+</div>
+
+<!-- ── What is HealthAI ── -->
+<div class="card" style="max-width:960px; margin:26px auto;">
+  <div class="card-title">🚀 What is HealthAI?</div>
+  <p>HealthAI is a machine learning platform that analyzes patient-reported symptoms to predict potential diseases. It was built as a comprehensive end-to-end system — from raw symptom data to a working web application.</p>
+  <p>The system provides instant personalized recommendations — medications, precautions, diet plans and workout guidance — all derived from structured medical datasets. Predictions happen in milliseconds using trained scikit-learn models served via a Flask backend.</p>
+</div>
+
+<!-- ── Key Features ── -->
+<div class="card" style="max-width:960px; margin:26px auto;">
+  <div class="card-title">✨ Key Features</div>
+  <p class="card-sub">Everything you need for a complete symptom-to-recommendation pipeline.</p>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="ico">⚡</div>
+      <h3>Instant Predictions</h3>
+      <p>Multi-model ensemble — SVC, RF, GBT, KNN, Naive Bayes benchmarked and compared.</p>
+    </div>
+    <div class="feature">
+      <div class="ico">💊</div>
+      <h3>Treatment Database</h3>
+      <p>Comprehensive medicine recommendations mapped to 41 disease conditions.</p>
+    </div>
+    <div class="feature">
+      <div class="ico">🥗</div>
+      <h3>Diet & Workout</h3>
+      <p>Tailored nutritional and exercise plans for each predicted condition.</p>
+    </div>
+    <div class="feature">
+      <div class="ico">🔗</div>
+      <h3>Medicine Similarity</h3>
+      <p>TF-IDF + Cosine Similarity finds alternative drugs with similar therapeutic properties.</p>
+    </div>
+    <div class="feature">
+      <div class="ico">📊</div>
+      <h3>132 Symptoms</h3>
+      <p>Clinically validated binary feature set covering most common diagnostic indicators.</p>
+    </div>
+    <div class="feature">
+      <div class="ico">🌐</div>
+      <h3>Flask API</h3>
+      <p>REST endpoints for /predict, /symptoms, and /health — easy to integrate.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Model Benchmark ── -->
+<div class="card" style="max-width:960px; margin:26px auto;">
+  <div class="card-title">🤖 Model Performance Benchmark</div>
+  <p class="card-sub">All models trained on 4,920 records with an 80/20 stratified split.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Algorithm</th>
+          <th>Accuracy</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>SVC</strong></td>
+          <td>Support Vector Classifier (RBF, C=1)</td>
+          <td><span class="acc-badge">~96%</span></td>
+          <td>Primary Prediction</td>
+        </tr>
+        <tr>
+          <td><strong>Random Forest</strong></td>
+          <td>Ensemble Trees (200 estimators, depth=15)</td>
+          <td><span class="acc-badge">~97%</span></td>
+          <td>Best Overall</td>
+        </tr>
+        <tr>
+          <td><strong>Gradient Boosting</strong></td>
+          <td>Iterative Boosting (150 trees, lr=0.05)</td>
+          <td><span class="acc-badge">~74%</span></td>
+          <td>Complex Patterns</td>
+        </tr>
+        <tr>
+          <td><strong>KNN</strong></td>
+          <td>K-Nearest Neighbors (k=7, distance)</td>
+          <td><span class="acc-badge">~97%</span></td>
+          <td>Proximity Mapping</td>
+        </tr>
+        <tr>
+          <td><strong>Naive Bayes</strong></td>
+          <td>Multinomial Probabilistic</td>
+          <td><span class="acc-badge">~96%</span></td>
+          <td>Baseline Evaluation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── Dataset ── -->
+<div class="card" style="max-width:960px; margin:26px auto;">
+  <div class="card-title">📊 Dataset Specifications</div>
+  <p class="card-sub">Training.csv — a clean, fully labeled medical symptom dataset.</p>
+  <div class="ds-grid">
+    <div class="ds-card"><div class="ds-num">4,920</div><div class="ds-label">Training Records</div></div>
+    <div class="ds-card"><div class="ds-num">132</div><div class="ds-label">Symptom Features</div></div>
+    <div class="ds-card"><div class="ds-num">41</div><div class="ds-label">Disease Classes</div></div>
+    <div class="ds-card"><div class="ds-num">0</div><div class="ds-label">Missing Values</div></div>
+  </div>
+</div>
+
+<!-- ── Tech Stack ── -->
+<div class="card" style="max-width:960px; margin:26px auto;">
+  <div class="card-title">🔧 Technology Stack</div>
+  <div class="tech-stack">
+    <span class="tech">Python 3</span>
+    <span class="tech">Flask</span>
+    <span class="tech">Scikit-learn</span>
+    <span class="tech">Pandas</span>
+    <span class="tech">NumPy</span>
+    <span class="tech">TF-IDF</span>
+    <span class="tech">Pickle</span>
+    <span class="tech">HTML / CSS</span>
+    <span class="tech">JavaScript</span>
+    <span class="tech">Jupyter Notebook</span>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-section">
+  <a href="/" class="cta-btn">🔬 Try the Diagnosis Tool →</a>
+</div>
+
+<!-- ── Disclaimer ── -->
+<div class="disclaimer">
+  <div class="ico">⚠️</div>
+  <div>
+    <strong>Medical Disclaimer —</strong>
+    HealthAI is an educational ML project. Predictions are for informational purposes only and do <strong>not</strong> constitute professional medical advice. Always consult a qualified healthcare professional.
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚕️ Health<span>AI</span></div>
+    <div class="footer-links">
+      <a href="/">Diagnose</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div style="font-size:12px; color:rgba(255,255,255,0.35);">© 2026 HealthAI</div>
+  </div>
+  <div class="footer-bottom">
+    ML Stack: SVC · Random Forest · Gradient Boosting · KNN · Naive Bayes · TF-IDF &nbsp;|&nbsp; 4,920 records · 41 diseases
+  </div>
+</footer>
+
+</body>
+</html>

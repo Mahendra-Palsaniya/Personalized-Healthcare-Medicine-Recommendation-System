@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — HealthAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(150deg, #0f2c6b 0%, #1a4fa0 40%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #0f2c6b;
+      padding: 14px 0;
+      border-bottom: 3px solid #3b82f6;
+      flex-shrink: 0;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #3b82f6, #a855f7);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo span { color: #60a5fa; }
+
+    .nav-back {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-back:hover { color: #fff; }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* ── Top badge ── */
+    .login-badge {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .badge-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #3b82f6, #a855f7);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 25px rgba(59,130,246,0.4);
+    }
+
+    .login-badge h1 {
+      color: white;
+      font-size: 1.7em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .login-badge h1 span { color: #93c5fd; }
+
+    .login-badge p {
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+    }
+
+    /* ── Card ── */
+    .login-card {
+      background: white;
+      border-radius: 20px;
+      padding: 38px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    /* ── Flash messages ── */
+    .flash {
+      padding: 12px 16px;
+      border-radius: 9px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .flash.error   { background: #fef2f2; color: #991b1b; border-left: 4px solid #f87171; }
+    .flash.success { background: #f0fdf4; color: #166534; border-left: 4px solid #4ade80; }
+    .flash.info    { background: #eff6ff; color: #1e40af; border-left: 4px solid #60a5fa; }
+
+    /* ── Tab switcher (Login / Register) ── */
+    .tab-switcher {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+
+    .tab-switcher button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .tab-switcher button.active {
+      background: white;
+      color: #1e3a8a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ── Form panels ── */
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+
+    /* ── Form groups ── */
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: #475569;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 13px 15px 13px 42px;
+      border: 2px solid #dde3f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s;
+      color: #1e293b;
+    }
+
+    .form-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    /* Password toggle ── */
+    .toggle-pw {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #94a3b8;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .toggle-pw:hover { color: #475569; }
+
+    /* ── Remember & Forgot ── */
+    .form-extras {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: #475569;
+      cursor: pointer;
+    }
+
+    .remember input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: #1e3a8a;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* ── Submit ── */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(30,58,138,0.35);
+      letter-spacing: 0.3px;
+    }
+
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,58,138,0.45); }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    /* ── Demo hint ── */
+    .demo-hint {
+      background: #f8faff;
+      border: 1px solid #c7d8ff;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 12px;
+      color: #475569;
+    }
+
+    .demo-hint strong { color: #1e3a8a; display: block; margin-bottom: 6px; font-size: 13px; }
+
+    .demo-hint code {
+      background: #e0ebff;
+      color: #1e40af;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .demo-hint .fill-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #1e3a8a;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .demo-hint .fill-btn:hover { background: #1e40af; }
+
+    /* ── Terms (register) ── */
+    .terms {
+      font-size: 12px;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .terms a { color: #3b82f6; text-decoration: none; }
+    .terms a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      background: #0f2c6b;
+      padding: 18px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    footer p { color: rgba(255,255,255,0.4); font-size: 12px; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: white; }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .login-card { padding: 26px 22px; }
+      .login-badge h1 { font-size: 1.4em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-icon">⚕️</div>
+      Health<span>AI</span>
+    </a>
+    <a href="/" class="nav-back">← Back to Home</a>
+  </div>
+</header>
+
+<!-- ── Main ── -->
+<main>
+  <div class="login-wrapper">
+
+    <!-- Badge -->
+    <div class="login-badge">
+      <div class="badge-icon">🔐</div>
+      <h1>Welcome to <span>HealthAI</span></h1>
+      <p>Sign in to access your personalized health dashboard</p>
+    </div>
+
+    <!-- Card -->
+    <div class="login-card">
+
+      <!-- Alert box — filled by JS from URL params (?msg=...&type=error|success|info) -->
+      <div id="alertBox" style="display:none;"></div>
+
+      <!-- Tab switcher -->
+      <div class="tab-switcher">
+        <button id="loginTab" class="active" onclick="switchPanel('login')">🔑 Sign In</button>
+        <button id="registerTab" onclick="switchPanel('register')">✨ Register</button>
+      </div>
+
+      <!-- ── Login Panel ── -->
+      <div class="form-panel active" id="loginPanel">
+        <form method="POST" action="/login">
+          <input type="hidden" name="action" value="login">
+
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input type="text" name="username" id="loginUser"
+                     placeholder="Enter your username" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" name="password" id="loginPass"
+                     placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="toggle-pw" onclick="togglePw('loginPass', this)">👁️</button>
+            </div>
+          </div>
+
+          <div class="form-extras">
+            <label class="remember">
+              <input type="checkbox" name="remember"> Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="submit-btn">🔑 Sign In</button>
+        </form>
+
+        <div class="divider">demo credentials</div>
+
+        <div class="demo-hint">
+          <strong>🧪 Try the demo account</strong>
+          Username: <code>demo</code> &nbsp; Password: <code>healthai123</code>
+          <br>
+          <button class="fill-btn" onclick="fillDemo()">⚡ Fill Demo Credentials</button>
+        </div>
+      </div>
+
+      <!-- ── Register Panel ── -->
+      <div class="form-panel" id="registerPanel">
+        <form method="POST" action="/login">
+          <input type="hidden" name="action" value="register">
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input type="text" name="fullname" placeholder="Your full name" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-wrap">
+              <span class="input-icon">🆔</span>
+              <input type="text" name="username" placeholder="Choose a username" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-wrap">
+              <span class="input-icon">📧</span>
+              <input type="email" name="email" placeholder="Your email address" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" name="password" id="regPass"
+                     placeholder="Create a password (min. 6 chars)" required autocomplete="new-password">
+              <button type="button" class="toggle-pw" onclick="togglePw('regPass', this)">👁️</button>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">✨ Create Account</button>
+
+          <p class="terms">
+            By registering you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    &nbsp;·&nbsp; © 2026 HealthAI — For educational purposes only
+  </p>
+</footer>
+
+<script>
+  // ── Read URL query params and show alert ──
+  function showAlertFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const msg    = params.get('msg');
+    const type   = params.get('type') || 'info';  // error | success | info
+    if (!msg) return;
+
+    const icons = { error: '❌', success: '✅', info: 'ℹ️' };
+    const box   = document.getElementById('alertBox');
+    box.className = 'flash ' + type;
+    box.innerHTML = `<span>${icons[type] || 'ℹ️'}</span> ${decodeURIComponent(msg)}`;
+    box.style.display = 'flex';
+
+    // Auto-dismiss after 5 s
+    setTimeout(() => { box.style.display = 'none'; }, 5000);
+
+    // Clean URL so it doesn't re-show on refresh
+    const clean = window.location.pathname;
+    window.history.replaceState({}, '', clean + (window.location.hash || ''));
+  }
+
+  // ── Panel switch ──
+  function switchPanel(name) {
+    document.getElementById('loginPanel').classList.toggle('active', name === 'login');
+    document.getElementById('registerPanel').classList.toggle('active', name === 'register');
+    document.getElementById('loginTab').classList.toggle('active', name === 'login');
+    document.getElementById('registerTab').classList.toggle('active', name === 'register');
+  }
+
+  // ── Password toggle ──
+  function togglePw(inputId, btn) {
+    const inp = document.getElementById(inputId);
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+    else { inp.type = 'password'; btn.textContent = '👁️'; }
+  }
+
+  // ── Fill demo credentials ──
+  function fillDemo() {
+    document.getElementById('loginUser').value = 'demo';
+    document.getElementById('loginPass').value = 'healthai123';
+    document.getElementById('loginUser').focus();
+  }
+
+  // ── Init ──
+  document.addEventListener('DOMContentLoaded', () => {
+    showAlertFromURL();
+    if (window.location.hash === '#register') switchPanel('register');
+  });
+</script>
+</body>
+</html>
