@@ -81,7 +81,7 @@ python app.py
 ```
 
 ### Step 4: Open Browser
-Navigate to: **http://localhost:5000**
+Navigate to: **[http://localhost:5000](https://personalized-healthcare-medicine-ewf5.onrender.com)**
 
 ---
 
@@ -89,11 +89,11 @@ Navigate to: **http://localhost:5000**
 
 | Model | Algorithm | Test Accuracy | Training Records |
 |-------|-----------|---------------|-----------------|
-| **SVC** *(Primary)* | Linear SVM | **100%** | 3444 |
-| Random Forest | Ensemble (100 trees) | **100%** | 3444 |
-| Gradient Boosting | Ensemble (100 estimators) | **100%** | 3444 |
-| K-Nearest Neighbors | KNN (k=5) | **100%** | 3444 |
-| Multinomial Naive Bayes | Probabilistic | **100%** | 3444 |
+| **SVC** *(Primary)* | Linear SVM | **96%** | 3444 |
+| Random Forest | Ensemble (100 trees) | **97%** | 3444 |
+| Gradient Boosting | Ensemble (100 estimators) | **74%** | 3444 |
+| K-Nearest Neighbors | KNN (k=5) | **97%** | 3444 |
+| Multinomial Naive Bayes | Probabilistic | **96%** | 3444 |
 
 ## 🏥 Disease Coverage (41 Conditions)
 
